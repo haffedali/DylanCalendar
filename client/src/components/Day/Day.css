@@ -1,0 +1,26 @@
+.box {
+    width: 35%;
+    height: 300px;
+    outline-color: blue;
+    outline-style: solid;
+    padding: 8px;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(48, 141, 141);
+  padding: 4px;
+}
+
+.date {
+    color: mintcream
+}
+
+.button {
+    color: mintcream
+}
+
+.body {
+    margin: 10px;
+}

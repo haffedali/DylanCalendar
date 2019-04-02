@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import CreateEvent from "./components/CreateEvent";
+import Day from "./components/Day"
 import logo from './logo.svg';
 import './App.css';
 
@@ -27,7 +28,7 @@ class App extends Component {
             </div>
           </nav>
           <br/>
-        <Route path="/" exact component={CreateEvent} />
+        <Route path="/" exact component={Day} />
         </div>
       </Router>
     );

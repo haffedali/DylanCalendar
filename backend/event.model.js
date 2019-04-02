@@ -8,10 +8,7 @@ let Event = new Schema({
     event_summary: {
         type: String
     },
-    event_month: {
-        type: String
-    },
-    event_day: {
+    event_date: {
         type: String
     }
 });

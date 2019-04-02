@@ -8,10 +8,12 @@ export default class CreateEvent extends Component {
         this.onChangeEventTitle = this.onChangeEventTitle.bind(this)
         this.onChangeEventSummary = this.onChangeEventSummary.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+        this.onChangeEventDate = this.onChangeEventDate.bind(this)
 
         this.state = {
             event_title: '',
             event_summary: '',
+            event_date: '',
         }
     }
 
@@ -20,7 +22,8 @@ export default class CreateEvent extends Component {
 
         const newEvent = {
             event_title: this.state.event_title,
-            event_summary: this.state.event_summary
+            event_summary: this.state.event_summary,
+            event_date: this.state.event_date
         }
         
         axios.post('http://localhost:4000/events/add', newEvent)
@@ -28,13 +31,22 @@ export default class CreateEvent extends Component {
 
         this.setState({
             event_title: '',
-            event_summary: ''
+            event_summary: '',
+            event_date: '',
         })
     }
 
     onChangeEventTitle(e){
         this.setState({
             event_title: e.target.value
+        })
+    }
+
+    onChangeEventDate(e){
+        let date = e.target.value;
+
+        this.setState({
+            event_date: date
         })
     }
 
@@ -67,6 +79,15 @@ export default class CreateEvent extends Component {
                             value={this.state.event_summary}
                             onChange={this.onChangeEventSummary}
                             />
+                    </div>
+                    <div className='form-group'>
+                        <label>Date:</label>
+                        <input
+                            type="date"
+                            className='form-control'
+                            value={this.state.event_date}
+                            onChange={this.onChangeEventDate}
+                        />
                     </div>
                     <div className="form-group">
                         <input type="submit" value="Create Todo" className="btn btn-primary" />

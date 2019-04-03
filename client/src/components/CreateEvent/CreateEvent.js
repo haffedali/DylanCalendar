@@ -56,6 +56,15 @@ export default class CreateEvent extends Component {
         })
     }
 
+    //LIFECYCLE FUNCTIONS
+
+    componentDidMount(){
+        this.setState({
+            event_title: '',
+            event_summary: '',
+            event_date: '',
+        })
+    }
 
     render(){
         return(

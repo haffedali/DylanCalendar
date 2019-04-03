@@ -27,6 +27,18 @@ eventRoutes.route('/').get(function(req, res) {
     });
 });
 
+eventRoutes.route('/:date').get(function(req, res){
+    let date = req.params.date;
+
+    Event.find({event_date: date}, function(err, events){
+        if (err) {
+            console.log(err)
+        } else {
+            res.json(events)
+        }
+    })
+})
+
 eventRoutes.route('/add').post(function(req, res) {
     let event = new Event(req.body);
     event.save()

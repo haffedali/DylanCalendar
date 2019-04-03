@@ -1,0 +1,8 @@
+.bubble {
+    background-color: rgb(48, 141, 141);
+    color: mintcream;
+    font-size: 16px;
+    padding: 5px;
+    margin: 3px;
+    border-radius: 5px;
+}

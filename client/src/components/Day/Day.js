@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import CreateEvent from "../CreateEvent"
+import EventBubble from "../EventBubble"
 import "bootstrap/dist/css/bootstrap.min.css";
 import './Day.css';
+import AddEvent from "../../assets/AddEvent.svg"
 
 export default class Day extends Component {
     // Notes on this component:
@@ -16,7 +18,10 @@ export default class Day extends Component {
 
         this.onCreateEventClick = this.onCreateEventClick.bind(this)
         this.state = {
+            events: [],
+            date: '2019-04-03',
             isModalOpen: false,
+            day: '03'
         }
     }
 
@@ -29,17 +34,31 @@ export default class Day extends Component {
 
     }
 
+    componentDidMount(){
+        axios.get('http://localhost:4000/events/' + this.state.date)
+            .then(response => {
+                this.setState({events: response.data});
+            })
+            .catch(function (error){
+                console.log(error);
+            })
+
+        
+    }
+    
     render(){
         return(
             <div className='container'>
                 <div className='box'>
                     <div className='heading'>
-                        <div className='date'>date</div>
-                        <button onClick={this.onCreateEventClick}>+</button>
+                        <div className='date'>{this.state.day}</div>
+                        <img onClick={this.onCreateEventClick} src={AddEvent} height="35" width="35" />
                     </div>
                     {/* will need to populate this with data from props */}
-                    <div className='body'>
-                        <p>Event details go here?</p>
+                    <div className='day-body'>
+                        {this.state.events.map((event) => (
+                            <div><EventBubble title = {event.event_title} /> </div>
+                        ))}
                     </div>
                 </div>
             </div>

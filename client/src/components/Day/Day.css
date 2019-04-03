@@ -4,6 +4,14 @@
     outline-color: blue;
     outline-style: solid;
     padding: 8px;
+    background-color: rgb(221, 221, 221)
+}
+
+.day-body {
+    height: 85%;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
 }
 
 .heading {
@@ -11,9 +19,11 @@
   justify-content: space-between;
   background-color: rgb(48, 141, 141);
   padding: 4px;
+  border-radius: 3px;
 }
 
 .date {
+    font-size: 24px;
     color: mintcream
 }
 

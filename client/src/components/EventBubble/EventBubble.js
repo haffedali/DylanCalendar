@@ -14,7 +14,7 @@ export default class EventBubble extends Component {
 
     render(){
         return(
-            <div className="bubble">{this.props.title}</div>
+            <div className="bubble" data={this.props.summary}>{this.props.title}</div>
         )
     }
 

@@ -17,10 +17,13 @@ export default class Day extends Component {
         super(props);
 
         this.onCreateEventClick = this.onCreateEventClick.bind(this)
+        this.onEventBubbleClick = this.onEventBubbleClick.bind(this)
+
         this.state = {
             events: [],
             date: '2019-04-03',
             isModalOpen: false,
+            isBubbleOpen: false,
             day: '03'
         }
     }
@@ -32,9 +35,32 @@ export default class Day extends Component {
             isModalOpen: true,
         })
 
+
+        axios.get('http://localhost:4000/events/' + this.state.date)
+        .then(response => {
+            console.log(response)
+            this.setState({events: response.data});
+        })
+        .catch(function (error){
+            console.log(error);
+        })
+
+    }
+
+    onEventBubbleClick(e){
+        e.preventDefault()
+
+        console.log(e.target.summary)
+
+        if (this.state.isBubbleOpen === false){
+            this.setState({
+                isBubbleOpen: true
+            })
+        }
     }
 
     componentDidMount(){
+        console.log('component did mount')
         axios.get('http://localhost:4000/events/' + this.state.date)
             .then(response => {
                 this.setState({events: response.data});
@@ -46,6 +72,9 @@ export default class Day extends Component {
         
     }
     
+
+
+
     render(){
         return(
             <div className='container'>
@@ -56,8 +85,8 @@ export default class Day extends Component {
                     </div>
                     {/* will need to populate this with data from props */}
                     <div className='day-body'>
-                        {this.state.events.map((event) => (
-                            <div><EventBubble title = {event.event_title} /> </div>
+                        {this.state.events.map((event, i) => (
+                            <div key={i} onClick={this.onEventBubbleClick}> <EventBubble title = {event.event_title} summary = {event.event_summary} /></div>
                         ))}
                     </div>
                 </div>

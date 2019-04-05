@@ -6,6 +6,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './Day.css';
 import AddEvent from "../../assets/AddEvent.svg"
 
+var moment = require('moment')
+
 export default class Day extends Component {
     // Notes on this component:
     // 1. Is constructed with events and event data passed as props
@@ -17,14 +19,19 @@ export default class Day extends Component {
         super(props);
 
         this.onCreateEventClick = this.onCreateEventClick.bind(this)
-        this.onEventBubbleClick = this.onEventBubbleClick.bind(this)
+        // this.onEventBubbleClick = this.onEventBubbleClick.bind(this)
+
+
+        let today = moment().format()
+        today = today.slice(0,10)
+        let day = today.slice(8,10)
 
         this.state = {
             events: [],
-            date: '2019-04-03',
+            date: today,
             isModalOpen: false,
             isBubbleOpen: false,
-            day: '03'
+            day: day
         }
     }
 
@@ -47,17 +54,17 @@ export default class Day extends Component {
 
     }
 
-    onEventBubbleClick(e){
-        e.preventDefault()
+    // onEventBubbleClick(e){
+    //     e.preventDefault()
 
-        console.log(e.target.summary)
+    //     console.log(e.target)
 
-        if (this.state.isBubbleOpen === false){
-            this.setState({
-                isBubbleOpen: true
-            })
-        }
-    }
+    //     if (this.state.isBubbleOpen === false){
+    //         this.setState({
+    //             isBubbleOpen: true
+    //         })
+    //     }
+    // }
 
     componentDidMount(){
         console.log('component did mount')
@@ -77,16 +84,16 @@ export default class Day extends Component {
 
     render(){
         return(
-            <div className='container'>
+            <div className='container_box'>
                 <div className='box'>
                     <div className='heading'>
                         <div className='date'>{this.state.day}</div>
-                        <img onClick={this.onCreateEventClick} src={AddEvent} height="35" width="35" />
+                        {/* <img onClick={this.onCreateEventClick} src={AddEvent} height="35" width="35" /> */}
                     </div>
                     {/* will need to populate this with data from props */}
                     <div className='day-body'>
                         {this.state.events.map((event, i) => (
-                            <div key={i} onClick={this.onEventBubbleClick}> <EventBubble title = {event.event_title} summary = {event.event_summary} /></div>
+                            <div key={i} id={event._id}> <EventBubble title = {event.event_title} summary = {event.event_summary} /></div>
                         ))}
                     </div>
                 </div>

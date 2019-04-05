@@ -7,14 +7,18 @@ export default class EventBubble extends Component {
     constructor(props){
         super(props);
 
+        this.onEventBubbleClick = this.onEventBubbleClick.bind(this)
+
         this.state = {}
     }
 
-
+    onEventBubbleClick(){
+        console.log(this.props.summary)
+    }
 
     render(){
         return(
-            <div className="bubble" data={this.props.summary}>{this.props.title}</div>
+            <div className="bubble" onClick={this.onEventBubbleClick}>{this.props.title}</div>
         )
     }
 

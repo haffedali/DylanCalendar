@@ -4,6 +4,7 @@ import CreateEvent from "../CreateEvent"
 import axios from 'axios';
 import "./Calendar.css"
 
+
 var moment = require('moment');
 
 export default class Calendar extends Component {
@@ -13,6 +14,7 @@ export default class Calendar extends Component {
         var month = moment().month()
 
         var amount = moment().daysInMonth()
+        
 
         var months = {
             0: "January",
@@ -35,12 +37,19 @@ export default class Calendar extends Component {
         this.state = {
             monthStart: "monday",
             amount: amount,
-            month: month
+            month: month,
+            startOfMonth: '',
+            endOfMonth: ''
         }
     }
 
     componentDidMount(){
-
+        var startOfMonth = moment().startOf(this.state.month).format("dddd")
+        var endOfMonth = moment().endOf(this.state.month).format("dddd")
+        this.setState({
+            startOfMonth: startOfMonth,
+            endOfMonth: endOfMonth
+        })
     }
 
 

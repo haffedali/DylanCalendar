@@ -87,7 +87,7 @@ export default class Day extends Component {
             <div className='container_box'>
                 <div className='box'>
                     <div className='heading'>
-                        <div className='date'>{this.state.day}</div>
+                        <div className='date'>{this.props.cell}</div>
                         {/* <img onClick={this.onCreateEventClick} src={AddEvent} height="35" width="35" /> */}
                     </div>
                     {/* will need to populate this with data from props */}

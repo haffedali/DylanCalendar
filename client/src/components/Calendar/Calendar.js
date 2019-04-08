@@ -40,8 +40,7 @@ export default class Calendar extends Component {
             amount: amount,
             month: month,
             startOfMonth: '',
-            endOfMonth: '',
-            started: false
+            endOfMonth: ''
         }
     }
 
@@ -56,6 +55,8 @@ export default class Calendar extends Component {
 
 
     render(){
+        let count = 1
+        let started = false
         return(
             <div className="container">
                 <h6>{[this.state.month]}</h6>
@@ -75,51 +76,41 @@ export default class Calendar extends Component {
                         <tr className="day_row">
                             <td className="border border-info Sunday">
                                 {
-                                  (this.state.startOfMonth === "Sunday")
-                                      ?   <div>{this.setState({started:true})}</div>
-                                      :   (this.state.started === true)
-                                        ?   <div><Day /></div>
+                                  this.state.startOfMonth === "Sunday"
+                                        ?  <div> <Day cell="1"/>{started = true}</div>
                                         :   <div></div>
                                 }
                             </td>
                             <td className="border border-info Monday">
                                 {
                                   (this.state.startOfMonth === "Monday")
-                                    ?  <div>{this.setState({started:true})}</div>
-                                    :  (this.state.started === true)
-                                        ?  <div><Day /></div>
+                                        ?  <Day cell="2"/>
                                         :  <div></div>
                                 }
                             </td>
                             <td className="border border-info Tuesday">
                                 {
                                   (this.state.startOfMonth === "Tuesday")
-                                    ?  <div>{this.setState({started:true})}</div>
-                                    :  (this.state.started === true)
-                                      ?  <div><Day /></div>
+                                      ?  <Day cell='3'/>
                                       :  <div></div>
                                 }
                             </td>
                             <td className="border border-info Wednesday">
                                 {
                                   (this.state.startOfMonth === "Wednesday")
-                                    ?  <div>{this.setState({started:true})}</div>
-                                    :  (this.state.started === true)
-                                      ?  <div><Day /></div>
+                                      ?  <Day cell="4"/>
                                       :  <div></div>
                                 }
                             </td>
                             <td className="border border-info Thursday">
                                 {
                                   (this.state.startOfMonth === "Thursday")
-                                    ?  <div>{this.setState({started:true})}</div>
-                                    :  (this.state.started === true)
-                                      ?  <div><Day /></div>
+                                      ?  <Day cell="5"/>
                                       :  <div></div>
                                 }
                             </td>
-                            <td className="border border-info Friday">{(this.state.startOfMonth === "Friday")?<div>{this.setState({started:true})}</div>:(this.state.started === true)?<div><Day /></div>:<div></div>}</td>
-                            <td className="border border-info Saturday">{(this.state.startOfMonth === "Saturday")?<div>{this.setState({started:true})}</div>:(this.state.started === true)?<div><Day /></div>:<div></div>}</td>
+                            <td className="border border-info Friday">{(this.state.startOfMonth === "Friday")?<div><Day cell="6"/></div>:<div></div>}</td>
+                            <td className="border border-info Saturday">{(this.state.startOfMonth === "Saturday")?<div><Day cell="7"/></div>:<div></div>}</td>
                         </tr>
                         <tr className="day_row">
                             <td className="border border-info"><Day cell="8"/></td>

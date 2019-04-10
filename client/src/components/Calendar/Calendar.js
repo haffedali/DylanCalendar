@@ -14,7 +14,7 @@ export default class Calendar extends Component {
         var month = moment().month()
 
         var amount = moment().daysInMonth()
-        
+        var started = 'false'
 
         var months = {
             0: "January",
@@ -44,6 +44,8 @@ export default class Calendar extends Component {
         }
     }
 
+    //function to manage placement of <Day /> and the props data corresponding to that date
+
     componentDidMount(){
         var startOfMonth = moment().startOf(this.state.month).format("dddd")
         var endOfMonth = moment().endOf(this.state.month).format("dddd")
@@ -56,7 +58,8 @@ export default class Calendar extends Component {
 
     render(){
         let count = 1
-        let started = false
+        var started = 'false'
+        
         return(
             <div className="container">
                 <h6>{[this.state.month]}</h6>
@@ -77,7 +80,7 @@ export default class Calendar extends Component {
                             <td className="border border-info Sunday">
                                 {
                                   this.state.startOfMonth === "Sunday"
-                                        ?  <div> <Day cell="1"/>{started = true}</div>
+                                        ?  <Day cell="1"/>
                                         :   <div></div>
                                 }
                             </td>
